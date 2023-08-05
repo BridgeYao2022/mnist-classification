@@ -19,15 +19,15 @@ EPOCH = 1               # train the training data n times, to save time, we just
 BATCH_SIZE = 50
 LR = 0.001              # learning rate
 DOWNLOAD_MNIST = False
-
+DataPath = '../data/MNIST/'
 
 # Mnist digits dataset
-if not(os.path.exists('./mnist/')) or not os.listdir('./mnist/'):
+if not(os.path.exists(DataPath)) or not os.listdir(DataPath):
     # not mnist dir or mnist is empyt dir
     DOWNLOAD_MNIST = True
 
 train_data = torchvision.datasets.MNIST(
-    root='./mnist/',
+    root=DataPath,
     train=True,                                     # this is training data
     transform=torchvision.transforms.ToTensor(),    # Converts a PIL.Image or numpy.ndarray to
                                                     # torch.FloatTensor of shape (C x H x W) and normalize in the range [0.0, 1.0]
@@ -43,12 +43,12 @@ print(train_data.train_labels.size())               # (60000)
 
 # pick 2000 samples to speed up testing
 
-train_data = torchvision.datasets.MNIST(root='./mnist/', train=True)
+train_data = torchvision.datasets.MNIST(root=DataPath, train=True)
 train_x = torch.unsqueeze(train_data.train_data, dim=1).type(torch.FloatTensor)[:60000]/255.   # shape from (2000, 28, 28) to (2000, 1, 28, 28), value in range(0,1)
 train_y = train_data.train_labels[:60000]
 
 # pick 2000 samples to speed up testing
-test_data = torchvision.datasets.MNIST(root='./mnist/', train=False)
+test_data = torchvision.datasets.MNIST(root=DataPath, train=False)
 test_x = torch.unsqueeze(test_data.test_data, dim=1).type(torch.FloatTensor)[:2000]/255.   # shape from (2000, 28, 28) to (2000, 1, 28, 28), value in range(0,1)
 test_y = test_data.test_labels[:2000]
 
@@ -161,9 +161,9 @@ for i in np.random.randint(0, high=len(testLabels), size=(24,)):
 
     j = j+1
 
-    # show the prediction
-    # print("I think that digit is: {}".format(prediction))
-    # print('image0 is ',image0)
-    # cv2.imshow("Image", image0)
-    # cv2.waitKey(0) # press enter to view each one!
+#     #show the prediction
+#     print("I think that digit is: {}".format(prediction))
+#     print('image0 is ',image0)
+#     cv2.imshow("Image", image0)
+#     cv2.waitKey(0) # press enter to view each one!
 # plt.show()

@@ -11,11 +11,13 @@ import torchvision
 # import matplotlib.pyplot as plt
 from sklearn import svm
 from sklearn.metrics import confusion_matrix
+DataPath = '../data/MNIST/'
+
 #%% Load the training data
 def MNIST_DATASET_TRAIN(downloads, train_amount):
     # Load dataset
     training_data = torchvision.datasets.MNIST(
-              root = './mnist/',
+              root = DataPath,
               train = True,
               transform = torchvision.transforms.ToTensor(),
               download = downloads
@@ -40,7 +42,7 @@ def MNIST_DATASET_TRAIN(downloads, train_amount):
 def MNIST_DATASET_TEST(downloads, test_amount):
     # Load dataset
     testing_data = torchvision.datasets.MNIST(
-              root = './mnist/',
+              root = DataPath,
               train = False,
               transform = torchvision.transforms.ToTensor(),
               download = downloads

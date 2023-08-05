@@ -20,12 +20,12 @@ DOWNLOAD_MNIST = False
 
 
 # Mnist digits dataset
-if not(os.path.exists('./mnist/')) or not os.listdir('./mnist/'):
+if not(os.path.exists('../data/MNIST/')) or not os.listdir('../data/MNIST/'):
     # not mnist dir or mnist is empyt dir
     DOWNLOAD_MNIST = True
 
 train_data = torchvision.datasets.MNIST(
-    root='./mnist/',
+    root='../data/MNIST/',
     train=True,                                     # this is training data
     transform=torchvision.transforms.ToTensor(),    # Converts a PIL.Image or numpy.ndarray to
                                                     # torch.FloatTensor of shape (C x H x W) and normalize in the range [0.0, 1.0]
@@ -43,7 +43,7 @@ print(train_data.train_labels.size())               # (60000)
 train_loader = Data.DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=True)
 
 # pick 2000 samples to speed up testing
-test_data = torchvision.datasets.MNIST(root='./mnist/', train=False)
+test_data = torchvision.datasets.MNIST(root='../data/MNIST/', train=False)
 test_x = torch.unsqueeze(test_data.test_data, dim=1).type(torch.FloatTensor)[:2000]/255.   # shape from (2000, 28, 28) to (2000, 1, 28, 28), value in range(0,1)
 test_y = test_data.test_labels[:2000]
 
